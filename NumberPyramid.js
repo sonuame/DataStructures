@@ -10,8 +10,8 @@ var s = [
 var path = [[],[]];
 var sum = 0;
 var last = 0;
-var p = function (i) {
 
+var p = function (i) {
     if (i < s.length - 1) {
         var e1 = s[i];
         var e2 = s[i + 1];
@@ -19,7 +19,9 @@ var p = function (i) {
             last = e1[0];
             path[0].push(last);
         }
-        for (j = 0; j < e1.length; j++) {
+
+        var j = e1.indexOf(last);
+        if(j > -1){
             var a = [e1[j], e2[j]];
             var b = [e1[j], e2[j + 1]];
             if (a[0] == last && b[0] == last) {
@@ -36,12 +38,12 @@ var p = function (i) {
                 }
             }
         }
+        i++;
+        p(i);
     }
 }
 
+p(0);
 
-for (let index = 0; index < s.length; index++) {
-    p(index);
-}
 console.log(sum);
-console.log(path);
+console.log(path[0]);
