@@ -28,12 +28,10 @@ var p = function (i) {
                 if (a[0] + a[1] > b[0] + b[1]) {
                     last = a[1];
                     path[0].push(last);
-                    
                     sum += a[0] + a[1];
                 } else {
                     last = b[1];
                     path[0].push(last);
-                    
                     sum += b[0] + b[1];
                 }
             }
