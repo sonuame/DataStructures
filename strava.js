@@ -41,7 +41,7 @@ function getClubActivities(id){
 getClubs().then(e=>{
   
   getClubActivities(45291).then(e=>{
-    console.log(e);
+    console.log(JSON.stringify(e));
   })
 
 
