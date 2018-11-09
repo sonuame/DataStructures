@@ -1,0 +1,78 @@
+{
+    "data": [{
+            "name": "Writing Fast Tests Against Enterprise Rails",
+            "time": 60
+        },
+        {
+            "name": "Overdoing it in Python",
+            "time": 45
+        },
+        {
+            "name": "Lua for the Masses",
+            "time": 30
+        },
+        {
+            "name": "Ruby Errors from Mismatched Gem Versions",
+            "time": 45
+        },
+        {
+            "name": "Common Ruby Errors",
+            "time": 45
+        },
+        {
+            "name": "Rails for Python Developers",
+            "time": 5
+        },
+        {
+            "name": "Communicating Over Distance",
+            "time": 60
+        },
+        {
+            "name": "Accounting-Driven Development ",
+            "time": 45
+        },
+        {
+            "name": "Woah",
+            "time": 30
+        },
+        {
+            "name": "Sit Down and Write",
+            "time": 30
+        },
+        {
+            "name": "Pair Programming vs Noise",
+            "time": 45
+        },
+        {
+            "name": "Rails Magic",
+            "time": 60
+        },
+        {
+            "name": "Ruby on Rails: Why We Should Move On",
+            "time": 60
+        },
+        {
+            "name": "Clojure Ate Scala (on my project)",
+            "time": 45
+        },
+        {
+            "name": "Programming in the Boondocks of Seattle",
+            "time": 30
+        },
+        {
+            "name": "Ruby vs. Clojure for Back-End Development",
+            "time": 60
+        },
+        {
+            "name": "Ruby on Rails Legacy App Maintenance",
+            "time": 60
+        },
+        {
+            "name": "A World Without HackerNews",
+            "time": 30
+        },
+        {
+            "name": "User Interface CSS in Rails Apps",
+            "time": 30
+        }]
+}
