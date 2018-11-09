@@ -30026,16 +30026,18 @@ for(let i=1;i<=arr.length;i++){
     let prev = res[i-1];
     let item = arr[i-1];
     let curr = prev.slice(0);  //.join(',').split(',').map(e=>parseInt(e));
-    for(let k=item[0]-1;k<=item[1]-1;k++)
+    for(let k=item[0]-1;k<=item[1]-1;k++){
         curr[k] += item[2];
+        if(curr[k] > sum) sum = curr[k];
+    }
     res.push(curr);
+    //var s = findMax(curr);
+    //if(s > sum) sum = s;
 }
 
-findMax(_arr){
-    var mzx = _arr.sort((a,b)=>{return a-b})[0];
-    if(curr[k] > sum) sum = curr[k];
+function findMax(_arr){
+    var max = _arr.sort(function(a,b){return b-a})[0];
+    return max;
 }
-
-fs.writeFile('array-manupulation.txt',JSON.stringify(res), function(err){});
 
 console.log(sum);
