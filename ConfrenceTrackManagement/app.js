@@ -1,6 +1,6 @@
 var fs = require('fs');
 var extern = require('./confrence.js');
-var contents = fs.readFileSync('input.txt', 'utf8');
+var contents = fs.readFileSync('./input.txt', 'utf8');
 var courses = contents.split('\n');
 var count = 0;
 courses = courses.map(m=>{
@@ -12,6 +12,12 @@ courses = courses.map(m=>{
 });
 
 let Confrence = new extern.confrence(courses);
-
-
-console.log(Confrence);
+count = 0;
+for (let index = 0; index < Confrence.numberOfTracks; index++) {
+    count = Confrence.SetTalkIntoTrack(index, count);        
+}
+console.log('Track 1:');
+Confrence.schedule.filter(e=>e.track == 1).forEach(e=>console.log(e.title));
+console.log();
+console.log('Track 2:');
+Confrence.schedule.filter(e=>e.track == 2).forEach(e=>console.log(e.title));
