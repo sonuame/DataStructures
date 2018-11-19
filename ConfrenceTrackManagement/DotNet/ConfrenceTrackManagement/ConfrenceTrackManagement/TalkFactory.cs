@@ -18,10 +18,11 @@ namespace ConfrenceTrackManagement
             return new Talk(++ID, title, mins);
         }
 
-        public static Talk GetScheduledTalk(string title, int mins, int track)
+        public static Talk GetScheduledTalk(string title, int mins, int track, DateTime? dateTime = null)
         {
             Talk t = new Talk(++ID, title, mins);
             t.Track = track + 1;
+            if (dateTime.HasValue) t.ScheduledDate = dateTime.Value;
             return t;
         }
     }

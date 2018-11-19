@@ -14,13 +14,12 @@ namespace ConfrenceTrackManagement
 
         private List<Talk> talks;
         private List<Talk> scheduledTalks;
-        
+        DateTime startTime;
 
         private int _totalTracks;
         private int _totalTrackMins;
 
         public int TotalTrackMins { get => _totalTrackMins; set => _totalTrackMins = value; }
-
 
         public List<ErrorModel> errors { get; set; }
 
@@ -28,9 +27,11 @@ namespace ConfrenceTrackManagement
         public List<Talk> Talks { get => talks; set => talks = value; }
         public List<Talk> ScheduledTalks { get => scheduledTalks; set => scheduledTalks = value; }
 
-        public Confrence(string filepath)
+        public Confrence(string filepath, DateTime date)
         {
             errors = new List<ErrorModel>();
+            talks = new List<Talk>();
+            startTime = date.Date.AddHours(9);
             try
             {
                 string content = string.Empty;
@@ -68,11 +69,11 @@ namespace ConfrenceTrackManagement
 
         public int ScheduleTalks(int start, int track)
         {
+            startTime = startTime.AddDays(track).Date.AddHours(9);
             ScheduledTalks = ScheduledTalks ?? new List<Talk>();
             TalkFactory.ID = start == 0 ? 0 : TalkFactory.ID;
             int morningMins = TOTAL_MORNING_MINS;
             int eveningMins = TOTAL_AFTERNOON_MINS;
-            DateTime startTime = DateTime.Today.AddHours(9);
             Talk talk = null;
             int index = 0;
             // Process Morning Schedule
@@ -84,7 +85,7 @@ namespace ConfrenceTrackManagement
                     morningMins -= talk.Time;
                     string Title = startTime.ToString("hh:mm tt ").ToUpper() + talk.Title + " " + talk.Time + "min";
                     startTime = startTime.AddMinutes(talk.Time);
-                    ScheduledTalks.Add(TalkFactory.GetScheduledTalk(Title, talk.Time, track));
+                    ScheduledTalks.Add(TalkFactory.GetScheduledTalk(Title, talk.Time, track, startTime.AddMinutes(-talk.Time)));
                 }
 
                 if (morningMins < talk.Time) break;
@@ -92,8 +93,8 @@ namespace ConfrenceTrackManagement
                 if (morningMins <= 0) break;
             }
 
-            ScheduledTalks.Add(TalkFactory.GetScheduledTalk("12:00 PM" + " " + "Lunch", 0, track));
             startTime = startTime.AddMinutes(60);
+            ScheduledTalks.Add(TalkFactory.GetScheduledTalk("12:00 PM" + " " + "Lunch", 0, track, startTime.Date.AddHours(12)));
             index++;
 
             for(; index < this.talks.Count; index++)
@@ -104,7 +105,7 @@ namespace ConfrenceTrackManagement
                     eveningMins -= talk.Time;
                     string Title = startTime.ToString("hh:mm tt ").ToUpper() + talk.Title + " " + talk.Time + "min";
                     startTime = startTime.AddMinutes(talk.Time);
-                    ScheduledTalks.Add(TalkFactory.GetScheduledTalk(Title, talk.Time, track));
+                    ScheduledTalks.Add(TalkFactory.GetScheduledTalk(Title, talk.Time, track, startTime.AddMinutes(-talk.Time)));
                 }
 
                 if (eveningMins < talk.Time) break;
@@ -115,7 +116,7 @@ namespace ConfrenceTrackManagement
             if (this.talks.Count == index) --index;
 
             index++;
-            ScheduledTalks.Add(TalkFactory.GetScheduledTalk("05:00 PM Networking Event", 0, track));
+            ScheduledTalks.Add(TalkFactory.GetScheduledTalk("05:00 PM Networking Event", 0, track, startTime.Date.AddHours(17)));
             return index;
         }
 

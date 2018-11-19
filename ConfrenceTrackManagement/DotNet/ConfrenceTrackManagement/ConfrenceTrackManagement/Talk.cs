@@ -12,11 +12,12 @@ namespace ConfrenceTrackManagement
         private int _track;
         private string _title;
         private int _time;
-
+        private DateTime _scheduledDate;
         public int ID { get => _iD; set => _iD = value; }
         public int Track { get => _track; set => _track = value; }
         public string Title { get => _title; set => _title = value; }
         public int Time { get => _time; set => _time = value; }
+        public DateTime ScheduledDate { get => _scheduledDate; set => _scheduledDate = value; }
 
         public Talk(int id, string title, int time)
         {
