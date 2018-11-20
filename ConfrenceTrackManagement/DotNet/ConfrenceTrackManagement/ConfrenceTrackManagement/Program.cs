@@ -10,7 +10,9 @@ namespace ConfrenceTrackManagement
     {
         static void Main(string[] args)
         {
-            Confrence confrence = new Confrence("input.txt", DateTime.Now);
+            Confrence confrence = new Confrence(DateTime.Now);
+            string[] lines = confrence.ReadFile("input.txt").Result;
+            confrence.ReadTalks(lines);
             
             int index = 0;
             for (int i = 0; i < confrence.TotalTracks; i++)
